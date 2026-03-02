@@ -1,37 +1,38 @@
 # SYSTEM_CHARTER — Everyday Tools
 
-## Tool Intent Statement: *Breath Before You Browse*
+## Tool Intent Statement: *Bloom — Your Focus Companion*
 
 ---
 
 ### 1. Core Function
-Guides the user through one slow breath cycle — inhale (4 s), hold (4 s), exhale (6 s) — then asks a single question: *"Still want to continue?"* Fourteen seconds of deliberate pause between impulse and action.
+A gamified companion that rewards the user each time they consciously resist a digital distraction or pause for a breath. A small plant grows alongside the user's practice — gaining XP, leveling up, sprouting leaves and eventually blooming — making each mindful choice feel tangible.
 
 ### 2. Human Context
-The compulsive unlock → scroll → regret loop. A person reaches for their phone or opens a tab not because they decided to, but because the impulse fired and nothing interrupted it. This tool inserts a single conscious breath into that gap. It does not block. It does not track. It asks for one breath, then one honest answer.
+The pull of notifications, feeds, and infinite scroll is constant. Most tools that fight distraction use restriction (blockers, timers, shame). Bloom takes the opposite approach: positive reinforcement. Instead of punishing the scroll, it celebrates the moment you chose not to. The plant is a living metaphor — your attention is soil; each resisted impulse is water.
 
 ### 3. Intended User
-Someone who has noticed the pattern in themselves — the automatic reach, the mindless refresh — and wants a small anchor. Not someone in crisis. Someone who wants to practice noticing.
+Someone who recognizes compulsive browsing in themselves and wants gentle encouragement — not surveillance. A student, a remote worker, anyone who has caught themselves mid-scroll and thought *"I didn't decide to do this."* They want a small ally, not a warden.
 
 ### 4. Behavioral Thesis
-A single conscious breath, taken voluntarily, creates enough space between impulse and action for awareness to re-enter. The tool does not prevent behavior. It illuminates the moment of choice.
+Positive reinforcement of the *decision not to act* can, over time, strengthen the pause between impulse and action. By making each conscious choice visible (XP, a growing plant, a streak), the user builds a sense of agency. The companion reframes restraint as care rather than deprivation.
 
 ### 5. Dignity Clause
-- No usage tracking, no streak counts, no "days since" counters.
-- No shame language. The reflection question is neutral, not accusatory.
-- No data leaves the page. No analytics. No storage.
-- The user can close the tab at any time. The tool makes zero claims on attention beyond the breath it was given.
+- The user self-reports. Bloom never monitors, intercepts, or tracks app usage.
+- No guilt language. Missing a day resets the streak quietly — no "you failed" message.
+- All data stays in localStorage on the user's machine. Nothing is transmitted.
+- The plant never dies or wilts. Progress pauses; it does not reverse.
+- The user can reset at any time. The tool makes zero claims on permanence.
 
 ### 6. Refusal Clause
 This tool will NOT become:
-- A habit tracker or gamified system.
-- A screen-time monitor or blocker.
-- A social/comparative tool ("your friends breathed 12 times today").
-- A notification sender. It runs only when opened.
-- A guilt mechanism. It never says "you should have."
+- A screen-time monitor, app blocker, or usage tracker.
+- A social/competitive leaderboard ("your friends are Level 8").
+- A notification sender. It runs only when the user opens it.
+- A data collector. No analytics, no accounts, no server.
+- A punishment system. The plant does not shrink or die.
 
 ### 7. Atmospheric Tone
-Like a quiet room. Like putting your hand on a cool surface. Present but not demanding. Warm but not cozy-cute. The circle breathes; the text whispers. Nothing moves fast. Nothing begs for attention.
+Like watering a windowsill plant. Quiet satisfaction. The dark-green palette feels like a garden at dusk — alive but calm. Feedback is warm (+XP toast, gentle level-up), never loud. The companion smiles; it never demands. Growth is slow and honest.
 
 ---
 
@@ -39,27 +40,26 @@ Like a quiet room. Like putting your hand on a cool surface. Present but not dem
 
 | Concept | Value | Where it lives |
 |---------|-------|----------------|
-| **Signal** | Tap/click (binary trigger) + tap zone (mouseY) for level switching | `input.js` — `isPressed`, `mouseY` |
-| **Parameter** | Breath phase progress (0–1 per phase), current level durations | `loop.js` — `phaseTime / duration` |
-| **Behavior** | Circle expands/contracts with breath; ring sweeps progress; color shifts per phase | `loop.js` — state machine driving radius, arc, hue |
-| **Visual form** | Filled circle + progress ring + phase-colored background gradient | `loop.js` — `ctx.arc()` calls |
-| **Readability test** | Tap → circle grows with color shift → ring sweeps → question appears. Legible in < 5 s | Self-evident |
+| **Signal** | Button tap: "I resisted" / "Take a breath" | `app.js` — click handlers |
+| **Parameter** | XP accumulation, level thresholds | `app.js` — `addXP()`, `xpForLevel()` |
+| **Behavior** | Plant grows taller, gains leaves, blooms; XP bar fills; streak increments | `app.js` — `drawPlant()`, `render()` |
+| **Visual form** | Canvas plant + progress ring; HTML XP bar, day row, streak | `app.js` + `index.html` |
+| **Readability test** | Tap "I resisted" → toast appears, XP bar grows, plant visibly changes | Self-evident |
 
-### Breathing Levels
-| Level | Inhale | Hold | Exhale | Purpose |
-|-------|--------|------|--------|---------|
-| Calm | 4 s | 4 s | 6 s | Gentle entry point |
-| Balance | 4 s | 7 s | 8 s | Classic 4-7-8 anxiety technique |
-| Deep | 5 s | 5 s | 8 s | Extended, meditative |
+### Progression System
+| Level | XP Required | Plant State |
+|-------|-------------|-------------|
+| 1 | 100 | Small bud, short stem |
+| 2–4 | 140–274 | Taller stem, leaves appear |
+| 5+ | 384+ | Flower blooms, petals grow |
 
-### Color Language
-| Phase | Hue | Feeling |
-|-------|-----|---------|
-| Idle | Warm neutral (~30°) | Resting, present |
-| Inhale | Cool teal (~190°) | Opening, receiving |
-| Hold | Emerald-seafoam (~155°) | Stillness, calm |
-| Exhale | Warm amber (~30°) | Releasing, grounding |
-| Reflect | Soft lavender (~270°) | Honest, quiet |
+### Companion Personality
+| Moment | Response |
+|--------|----------|
+| Resist distraction | Random encouraging toast (+10 XP) |
+| Take a breath | Calm acknowledgment (+5 XP) |
+| Level up | "🌱 Level N! Your plant grew!" |
+| Reset | "Fresh start! 🌱" (no guilt) |
 
 ## Taste Vow
-No particle effects, no blending modes, no noise textures. Colors are muted and deliberate — each maps to a breath phase. The progress ring is functional, not decorative. The counter is informational, not gamified. Every visual decision traces to the breath state. If it doesn't serve the breath, remove it.
+No punishment, no withering, no shame. The plant only grows — never shrinks. Colors are earthy greens, not neon gamification. The XP bar is honest, not manipulative (no "almost there!" nudges). Toasts disappear quietly. The companion celebrates; it never nags.

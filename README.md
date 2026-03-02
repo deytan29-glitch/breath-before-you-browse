@@ -1,48 +1,38 @@
-# Breath Before You Browse
+# 🌱 Bloom — Your Focus Companion
 
-A small digital tool that inserts one conscious breath between impulse and action. Not a blocker. Not a tracker. A moment of pause.
+A gamified companion app that celebrates each time you resist a digital distraction. A small plant grows alongside your practice — gaining XP, leveling up, and eventually blooming.
 
-## What it does
+## How It Works
 
-Tap to start a breath cycle. The circle expands (inhale), holds, contracts (exhale), then asks: *"still want to continue?"* That's it. Fourteen seconds of deliberate pause.
+1. **Open the page** — your plant companion greets you
+2. **Tap "I resisted a distraction"** when you catch yourself about to mindlessly scroll — earn **+10 XP**
+3. **Tap "Take a breath"** for a mindful pause — earn **+5 XP**
+4. **Watch your plant grow** — new leaves, taller stem, flowers at Level 5+
+5. **Build streaks** — consecutive days of practice are tracked automatically
 
-## How to use
+## Features
 
-1. Open `index.html` in any browser (works from `file://`)
-2. Tap or click the circle to start breathing
-3. Follow the prompts: breathe in → hold → breathe out
-4. At the end, answer the question honestly
-5. Tap the bottom of the screen (in idle) to switch breathing levels
+- 🌿 **Growing plant companion** drawn on canvas — evolves with your level
+- ⬆️ **XP & level system** — escalating thresholds keep progression meaningful
+- 📅 **Weekly progress dots** — see which days you practiced (Sun–Sat)
+- 🔥 **Streak counter** — consecutive active days
+- 💬 **Encouraging toasts** — random positive messages on each action
+- 💾 **localStorage persistence** — progress survives page refreshes
+- 📱 **Mobile-friendly** — works on any screen size
 
-### Breathing Levels
+## Tech
 
-| Level | Pattern | Best for |
-|-------|---------|----------|
-| Calm | 4-4-6 | Gentle entry |
-| Balance | 4-7-8 | Anxiety relief |
-| Deep | 5-5-8 | Meditative |
+- **Zero dependencies** — vanilla HTML, CSS, JS
+- **No build step** — open `index.html` directly from `file://`
+- **No server required** — runs entirely in the browser
+- **No data transmitted** — everything stays in localStorage on your device
 
-## File map
+## Live
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Entry point, script load order |
-| `style.css` | Full-bleed black canvas |
-| `main.js` | 4 lines of wiring |
-| `src/utils/math.js` | Pure math helpers (clamp, lerp, ease, hsl) |
-| `src/input/input.js` | Tap/click detection, normalized mouseY |
-| `src/canvas/setupCanvas.js` | HiDPI canvas + resize |
-| `src/canvas/loop.js` | Breath state machine + all drawing |
-| `docs/SYSTEM_CHARTER.md` | Tool Intent Statement |
-| `process/changelog.md` | Dated change log |
+**GitHub Pages:** [deytan29-glitch.github.io/breath-before-you-browse](https://deytan29-glitch.github.io/breath-before-you-browse/)
 
-## Design principles
+## Philosophy
 
-- **No tracking.** No streaks, no data, no analytics.
-- **No shame.** The reflection question is neutral.
-- **No dependencies.** Vanilla JS + Canvas. Runs from `file://`.
-- **One function.** Breathe. That's it.
+Bloom takes the opposite approach to most distraction tools. Instead of blocking or shaming, it celebrates the moment you chose not to scroll. Your attention is soil; each resisted impulse is water. The plant never wilts — progress pauses, but never reverses.
 
-## Deploy
-
-Push to GitHub. Enable Pages (Settings → Pages → branch main → / root). No build step needed.
+See [docs/SYSTEM_CHARTER.md](docs/SYSTEM_CHARTER.md) for the full Tool Intent Statement.

@@ -3,16 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Breath Before You Browse</title>
+  <title>Bloom — Your Focus Companion</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <canvas id="canvas" aria-label="Breath Before You Browse"></canvas>
 
-  <script src="src/utils/math.js"></script>
-  <script src="src/input/input.js"></script>
-  <script src="src/canvas/setupCanvas.js"></script>
-  <script src="src/canvas/loop.js"></script>
-  <script src="main.js"></script>
+  <!-- ── Notification toast ── -->
+  <div id="toast" class="toast hidden" aria-live="polite"></div>
+
+  <!-- ── Main card ── -->
+  <div class="card">
+
+    <!-- companion canvas (plant + progress ring) -->
+    <canvas id="companion" width="220" height="220" aria-label="Your plant companion"></canvas>
+
+    <h1 class="level-label" id="levelLabel">Level 1</h1>
+
+    <!-- XP bar -->
+    <div class="xp-bar-wrap">
+      <div class="xp-bar" id="xpBar"></div>
+    </div>
+    <p class="xp-text" id="xpText">0 / 100 XP</p>
+
+    <!-- daily progress -->
+    <h2 class="section-title">Today's Progress</h2>
+    <div class="day-row" id="dayRow"></div>
+
+    <!-- streak -->
+    <p class="streak" id="streakLabel">🔥 Streak: 0 days</p>
+
+    <!-- action buttons -->
+    <div class="btn-row">
+      <button class="btn btn-primary" id="resistBtn">I resisted a distraction</button>
+      <button class="btn btn-secondary" id="breathBtn">Take a breath</button>
+    </div>
+
+    <button class="btn btn-link" id="resetBtn">Reset progress</button>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
